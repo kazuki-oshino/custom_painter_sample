@@ -20,6 +20,7 @@ class MyApp extends HookWidget {
       ),
       home: PageSelectScreen(),
       navigatorKey: useProvider(navigatorKeyProvider),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

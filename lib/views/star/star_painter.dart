@@ -9,16 +9,19 @@ class StarPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    double centerWidth = size.width / 2;
+    double centerHeight = size.height / 2;
+
     final _starOffsetList = <Offset>[
-      Offset(90, 120),
-      Offset(-145, -45),
-      Offset(145, -45),
-      Offset(-90, 120),
-      Offset(0, -145),
+      Offset(centerWidth + 90, centerHeight + 120),
+      Offset(centerWidth - 145, centerHeight - 45),
+      Offset(centerWidth + 145, centerHeight - 45),
+      Offset(centerWidth - 90, centerHeight + 120),
+      Offset(centerWidth + 0, centerHeight - 145),
     ];
 
     final _rotateOffsetList =
-        _starOffsetList.map((o) => _rotate(o, val)).toList();
+        _starOffsetList.map((o) => _rotate(o, val, centerWidth, centerHeight)).toList();
 
     final path = Path()..addPolygon(_rotateOffsetList, false);
     canvas.drawPath(
@@ -35,9 +38,14 @@ class StarPainter extends CustomPainter {
   }
 
   /// 回転の公式を利用し、指定したラジアンで回転させた場合のOffsetを返す
-  Offset _rotate(Offset old, double radians) {
-    final dx = old.dx * cos(radians) - old.dy * sin(radians);
-    final dy = old.dx * sin(radians) + old.dy * cos(radians);
+  /// Q((𝑎−𝑐)cos𝜃−(𝑏−𝑑)sin𝜃+𝑐, (𝑎−𝑐)sin𝜃+(𝑏−𝑑)cos𝜃+𝑑)
+  Offset _rotate(Offset old, double radians, double centerWidth, double centerHeight) {
+    final dx = (old.dx * cos(radians) - centerWidth * cos(radians)) -
+        (old.dy * sin(radians) - centerHeight * sin(radians)) +
+        centerWidth;
+    final dy = (old.dx * sin(radians) - centerWidth * sin(radians)) +
+        (old.dy * cos(radians) - centerHeight * cos(radians)) +
+        centerHeight;
     return Offset(dx, dy);
   }
 }

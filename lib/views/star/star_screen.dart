@@ -17,7 +17,7 @@ class _StarScreenState extends State<StarScreen> with SingleTickerProviderStateM
   void initState() {
     super.initState();
     controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 10));
+        AnimationController(vsync: this, duration: Duration(seconds: 2));
 
     Tween<double> _rotationTween = Tween(begin: -pi, end: pi);
 
@@ -51,11 +51,9 @@ class _StarScreenState extends State<StarScreen> with SingleTickerProviderStateM
       body: AnimatedBuilder(
         animation: animation,
         builder: (BuildContext context, Widget? child) {
-          return Center(
-            child: CustomPaint(
-              // size: Size(double.infinity, double.infinity),
-              painter: StarPainter(val: -animation.value),
-            ),
+          return CustomPaint(
+            size: Size(double.infinity, double.infinity),
+            painter: StarPainter(val: -animation.value),
           );
         },
       ),
