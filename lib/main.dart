@@ -1,11 +1,16 @@
-import 'package:custom_painter_sample/graph_screen.dart';
+import 'package:custom_painter_sample/views/graph/graph_screen.dart';
+import 'package:custom_painter_sample/views/page_select_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/all.dart';
+
+import 'models/navigator.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -13,7 +18,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: GraphScreen()
+      home: PageSelectScreen(),
+      navigatorKey: useProvider(navigatorKeyProvider),
     );
   }
 }

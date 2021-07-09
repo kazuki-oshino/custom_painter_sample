@@ -5,7 +5,10 @@ import 'graph_painter.dart';
 class GraphScreen extends StatefulWidget {
   @override
   _GraphScreenState createState() => _GraphScreenState();
+
 }
+
+double counter = 0;
 
 class _GraphScreenState extends State<GraphScreen> {
   @override
@@ -29,4 +32,3 @@ class _GraphScreenState extends State<GraphScreen> {
     );
   }
 }
-double counter = 0;

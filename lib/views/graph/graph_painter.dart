@@ -1,11 +1,12 @@
 import 'dart:collection';
 
-import 'package:custom_painter_sample/graph_screen.dart';
+import 'package:custom_painter_sample/views/graph/graph_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' hide TextDirection;
 import 'dart:math';
 
 class GraphPainter extends CustomPainter {
+
   @override
   void paint(Canvas canvas, Size size) {
 
@@ -62,7 +63,7 @@ class GraphPainter extends CustomPainter {
     double maxValue = data.values.toList().reduce(max);
     int digits = maxValue.round().toString().length;
     topScaleNumber =
-        (maxValue ~/ pow(10, digits - 1) + 1) * pow(10, digits - 1);
+        ((maxValue ~/ pow(10, digits - 1) + 1) * pow(10, digits - 1)).toInt();
     return topScaleNumber;
   }
 
