@@ -12,23 +12,26 @@ class ButtonPart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      child: Text(buttonText),
-      style: ElevatedButton.styleFrom(
-        primary: Colors.yellow,
-        onPrimary: Colors.black,
-        shape: BeveledRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-      ),
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => nextScreen,
+    return SizedBox(
+      width: 200.0,
+      child: ElevatedButton(
+        child: Text(buttonText),
+        style: ElevatedButton.styleFrom(
+          primary: Colors.yellow,
+          onPrimary: Colors.black,
+          shape: BeveledRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
           ),
-        );
-      },
+        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => nextScreen,
+            ),
+          );
+        },
+      ),
     );
   }
 }
