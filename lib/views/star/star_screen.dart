@@ -54,7 +54,7 @@ class _StarScreenState extends State<StarScreen> with SingleTickerProviderStateM
           return Center(
             child: CustomPaint(
               // size: Size(double.infinity, double.infinity),
-              painter: StarPainter(val: animation.value),
+              painter: StarPainter(val: -animation.value),
             ),
           );
         },

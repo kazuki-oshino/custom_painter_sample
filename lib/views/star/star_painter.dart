@@ -9,7 +9,7 @@ class StarPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final _offsetList = <Offset>[
+    final _starOffsetList = <Offset>[
       Offset(90, 120),
       Offset(-145, -45),
       Offset(145, -45),
@@ -17,13 +17,14 @@ class StarPainter extends CustomPainter {
       Offset(0, -145),
     ];
 
-    final _rotateOffsetList = _offsetList.map((o) => _rotate(o, val)).toList();
+    final _rotateOffsetList =
+        _starOffsetList.map((o) => _rotate(o, val)).toList();
 
     final path = Path()..addPolygon(_rotateOffsetList, false);
     canvas.drawPath(
       path,
       Paint()
-        ..color = Colors.white
+        ..color = Colors.yellow
         ..strokeWidth = 1.0,
     );
   }
@@ -35,8 +36,8 @@ class StarPainter extends CustomPainter {
 
   /// 回転の公式を利用し、指定したラジアンで回転させた場合のOffsetを返す
   Offset _rotate(Offset old, double radians) {
-    final dx = (old.dx * cos(radians)) - (old.dy * sin(radians));
-    final dy = (old.dx * sin(radians)) + (old.dy * cos(radians));
+    final dx = old.dx * cos(radians) - old.dy * sin(radians);
+    final dy = old.dx * sin(radians) + old.dy * cos(radians);
     return Offset(dx, dy);
   }
 }
