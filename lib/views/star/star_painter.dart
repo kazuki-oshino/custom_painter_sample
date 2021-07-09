@@ -3,17 +3,23 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class StarPainter extends CustomPainter {
+  final double val;
+
+  StarPainter({required this.val});
+
   @override
   void paint(Canvas canvas, Size size) {
+    final _offsetList = <Offset>[
+      Offset(90, 120),
+      Offset(-145, -45),
+      Offset(145, -45),
+      Offset(-90, 120),
+      Offset(0, -145),
+    ];
 
-    final _offsetList = <Offset>[];
-    _offsetList.add(Offset(90, 120));
-    _offsetList.add(Offset(-145, -45));
-    _offsetList.add(Offset(145, -45));
-    _offsetList.add(Offset(-90, 120));
-    _offsetList.add(Offset(0, -145));
+    final _rotateOffsetList = _offsetList.map((o) => _rotate(o, val)).toList();
 
-    final path = Path()..addPolygon(_offsetList, false);
+    final path = Path()..addPolygon(_rotateOffsetList, false);
     canvas.drawPath(
       path,
       Paint()
@@ -24,19 +30,13 @@ class StarPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
+    return true;
   }
 
-  Offset _affinTranslate(
-    Offset pos, {
-    double radians = 0,
-    double scale = 1.0,
-    double tx = 0,
-    double ty = 0,
-  }) {
-    final dx = scale * (pos.dx * cos(radians) - pos.dy * sin(radians)) + tx;
-    final dy = scale * (pos.dx * sin(radians) + pos.dy * cos(radians)) + ty;
-    print('dx:$dx, dy:$dy');
+  /// 回転の公式を利用し、指定したラジアンで回転させた場合のOffsetを返す
+  Offset _rotate(Offset old, double radians) {
+    final dx = (old.dx * cos(radians)) - (old.dy * sin(radians));
+    final dy = (old.dx * sin(radians)) + (old.dy * cos(radians));
     return Offset(dx, dy);
   }
 }
