@@ -17,7 +17,7 @@ class _StarScreenState extends State<StarScreen> with SingleTickerProviderStateM
   void initState() {
     super.initState();
     controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
+        AnimationController(vsync: this, duration: Duration(seconds: 4));
 
     Tween<double> _rotationTween = Tween(begin: -pi, end: pi);
 
