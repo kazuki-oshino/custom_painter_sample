@@ -5,4 +5,4 @@ Custom Painterを使って星を描き、回転させるサンプルコードで
 [【Flutter】CustomPainterで星を描いて回転させる方法](https://techgamelife.net/2021/07/09/flutter-custom-painter-star-rotate/)
 
 ## サンプルGIF
-![星を回転](sample_gif/star.gif)
+![星を回転](sample_gif/star_resize.gif)
